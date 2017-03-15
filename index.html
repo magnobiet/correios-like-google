@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  lang="pt-BR">
+<html  lang="pt-BR" data-ng-app="CorreiosSearchApp">
 <head>
 	<meta charset="utf-8">
 	<title>Rastreamento de pacote e busca de CEP &mdash; Correios</title>
@@ -20,7 +20,7 @@
 </head>
 <body>
 
-	<div class="wrapper">
+	<div class="wrapper" data-ng-controller="SearchController" data-ng-class="{ 'has-result': hasResult }">
 
 		<div class="container">
 
@@ -53,17 +53,47 @@
 
 			<main role="main">
 
-				<form action="#" method="POST" role="form">
+				<form autocomplete="off" role="form" data-ng-submit="doSearch(code)">
 
 					<fieldset>
 
-						<input type="search" name="search" id="search" autofocus required>
+						<input type="search" name="search" id="search" minlength="8" maxlength="13" data-ng-model="code" data-ng-disabled="searching" autofocus required>
 
-						<button type="submit">Pesquisar</button>
+						<button type="submit" data-ng-disabled="searching" data-ng-bind="buttonText"></button>
 
 					</fieldset>
 
 				</form>
+
+				<section class="result" data-ng-if="result">
+
+					<ul class="result-list">
+
+						<li class="result-item">
+
+							<iframe data-ng-src="{{ result.map }}" width="600" height="200" frameborder="0" allowfullscreen></iframe>
+
+							<div class="result-content">
+
+
+								<p class="headline">
+									<span data-ng-if="result.address">{{ result.address }}</span>
+									<span data-ng-if="result.complement">({{ result.complement }})</span>
+									<span data-ng-if="result.neighborhood"> &mdash; Bairro {{ result.neighborhood }}</span>
+								</p>
+
+								<p>
+									<span data-ng-if="result.cep">{{ result.cep }} - </span>
+									{{ result.city }}, {{ result.state }}
+								</p>
+
+							</div>
+
+						</li>
+
+					</ul>
+
+				</section>
 
 			</main>
 
@@ -78,6 +108,9 @@
 		</footer>
 
 	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+	<script src="assets/scripts/app.js"></script>
 
 </body>
 </html>

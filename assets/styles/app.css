@@ -32,7 +32,8 @@ fieldset {
 	margin: 0;
 }
 
-input {
+input,
+input:disabled:hover {
 	border: 0;
 	background-color: #fff;
 	height: 44px;
@@ -51,7 +52,8 @@ input:focus {
 	box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
-button {
+button,
+button:disabled:hover {
 	background-image: -webkit-linear-gradient(top, #f5f5f5, #f1f1f1);
 	background-image: linear-gradient(top, #f5f5f5, #f1f1f1);
 	background-color: #f2f2f2;
@@ -80,6 +82,17 @@ button:hover {
 button:focus {
 	border: 1px solid #4d90fe;
 	outline: none;
+}
+
+iframe {
+	max-width: 100%;
+	border: 0;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 
 footer {
@@ -124,4 +137,35 @@ footer {
 	padding: 1em;
 	max-width: 540px;
 	margin: 0 auto;
+}
+
+.result {
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.result .map {
+	height: 200px;
+}
+
+.result-item {
+	border: solid #ebebeb;
+	border-width: 1px 0 0 0;
+	width: 100%;
+	min-height: 58px;
+}
+
+.result-content {
+	padding: 8px 16px;
+}
+
+.result-item:hover,
+.result-item:focus {
+	background-color: #fafafa;
+}
+
+.result-content .headline {
+	font-size: 1.25em;
+	font-weight: bold;
+	margin: 0;
 }
